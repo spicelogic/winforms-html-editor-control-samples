@@ -3,39 +3,39 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Quickstart", "01-Quickstart\01-Quickstart.csproj", "{654B8861-2A8B-4D95-A533-317D821B6606}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "01-Quickstart-CS", "01-Quickstart-CS\01-Quickstart-CS.csproj", "{654B8861-2A8B-4D95-A533-317D821B6606}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-LoadAndSaveHtml", "02-LoadAndSaveHtml\02-LoadAndSaveHtml.csproj", "{65A6574B-854C-4444-B3C1-2BE0A21C315E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "02-LoadAndSaveHtml-CS", "02-LoadAndSaveHtml-CS\02-LoadAndSaveHtml-CS.csproj", "{65A6574B-854C-4444-B3C1-2BE0A21C315E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-PasteFromWord", "03-PasteFromWord\03-PasteFromWord.csproj", "{1C147F58-834F-4F20-924B-FF08D1956DE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "03-PasteFromWord-CS", "03-PasteFromWord-CS\03-PasteFromWord-CS.csproj", "{1C147F58-834F-4F20-924B-FF08D1956DE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-ToolbarCustomization", "04-ToolbarCustomization\04-ToolbarCustomization.csproj", "{F294F440-D3FF-4A4B-8E35-A8FAE38D821F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "04-ToolbarCustomization-CS", "04-ToolbarCustomization-CS\04-ToolbarCustomization-CS.csproj", "{F294F440-D3FF-4A4B-8E35-A8FAE38D821F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-MailMergeTemplate", "05-MailMergeTemplate\05-MailMergeTemplate.csproj", "{3C76F519-2AB9-4283-95B4-EA24E0759B65}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "05-MailMergeTemplate-CS", "05-MailMergeTemplate-CS\05-MailMergeTemplate-CS.csproj", "{3C76F519-2AB9-4283-95B4-EA24E0759B65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-Localization", "07-Localization\07-Localization.csproj", "{39C74599-69A1-4295-AAA3-F15F6D0462A5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "07-Localization-CS", "07-Localization-CS\07-Localization-CS.csproj", "{39C74599-69A1-4295-AAA3-F15F6D0462A5}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "07-Localization-VB", "07-Localization-VB\07-Localization-VB.vbproj", "{B32F8353-834B-40A5-B816-DFFBD12B64A4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08-CustomSpellChecker", "08-CustomSpellChecker\08-CustomSpellChecker.csproj", "{28CE79EC-3C6C-45BA-ACBE-08A0709DEA25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "08-CustomSpellChecker-CS", "08-CustomSpellChecker-CS\08-CustomSpellChecker-CS.csproj", "{28CE79EC-3C6C-45BA-ACBE-08A0709DEA25}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "08-CustomSpellChecker-VB", "08-CustomSpellChecker-VB\08-CustomSpellChecker-VB.vbproj", "{A163307C-4F0D-4A30-A534-64BE190C7BAD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-CustomContextMenu", "10-CustomContextMenu\10-CustomContextMenu.csproj", "{B4702794-056C-4735-BF02-6223CB8AA65C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "10-CustomContextMenu-CS", "10-CustomContextMenu-CS\10-CustomContextMenu-CS.csproj", "{B4702794-056C-4735-BF02-6223CB8AA65C}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "10-CustomContextMenu-VB", "10-CustomContextMenu-VB\10-CustomContextMenu-VB.vbproj", "{5D00C90F-AFE9-4BC7-BFA3-BC4348EE8354}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-DataBinding", "06-DataBinding\06-DataBinding.csproj", "{EAC34CC7-B5B9-4FC7-AF75-0333119D6680}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "06-DataBinding-CS", "06-DataBinding-CS\06-DataBinding-CS.csproj", "{EAC34CC7-B5B9-4FC7-AF75-0333119D6680}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "06-DataBinding-VB", "06-DataBinding-VB\06-DataBinding-VB.vbproj", "{8C6FFD5A-731D-4641-B1BD-8A1AA776BEA6}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "04-ToolbarCustomization-VB", "04-ToolbarCustomization-VB\04-ToolbarCustomization-VB.vbproj", "{4655CC28-09E2-4F7E-B82B-A4C14F3F6B5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09-CustomDialog", "09-CustomDialog\09-CustomDialog.csproj", "{A27168B5-7E8D-47F3-BCAB-782CE81E126F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "09-CustomDialog-CS", "09-CustomDialog-CS\09-CustomDialog-CS.csproj", "{A27168B5-7E8D-47F3-BCAB-782CE81E126F}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "09-CustomDialog-VB", "09-CustomDialog-VB\09-CustomDialog-VB.vbproj", "{8FB41B90-4129-41E1-8596-C9E0C291162F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11-FullEditorDemo", "11-FullEditorDemo\11-FullEditorDemo.csproj", "{9E8102F8-7EA9-4F3C-9864-0A5A0F9E9B9D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "11-FullEditorDemo-CS", "11-FullEditorDemo-CS\11-FullEditorDemo-CS.csproj", "{9E8102F8-7EA9-4F3C-9864-0A5A0F9E9B9D}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "11-FullEditorDemo-VB", "11-FullEditorDemo-VB\11-FullEditorDemo-VB.vbproj", "{F610A5BF-EA04-4EA1-8D93-58AB9655DEF5}"
 EndProject

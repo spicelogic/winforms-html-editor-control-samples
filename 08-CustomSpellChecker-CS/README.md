@@ -16,5 +16,5 @@ A VB.NET version of this sample sits alongside in `08-CustomSpellChecker-VB`.
 ## Run it
 
 ```
-dotnet run --project 08-CustomSpellChecker
+dotnet run --project 08-CustomSpellChecker-CS
 ```

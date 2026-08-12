@@ -18,5 +18,5 @@ A VB.NET version of this same sample sits alongside in `07-Localization-VB`.
 ## Run it
 
 ```
-dotnet run --project 07-Localization
+dotnet run --project 07-Localization-CS
 ```

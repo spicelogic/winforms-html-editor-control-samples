@@ -14,4 +14,4 @@ Key API members used: `WinFormHtmlEditor`, `BodyHtml`, `RefreshHighDpiScaling`, 
 dotnet run --project 11-FullEditorDemo-VB
 ```
 
-This is the VB.NET counterpart to the C# `11-FullEditorDemo` sample alongside it.
+This is the VB.NET counterpart to the C# `11-FullEditorDemo-CS` sample alongside it.

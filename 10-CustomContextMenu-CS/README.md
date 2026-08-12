@@ -14,5 +14,5 @@ A VB.NET version of this same sample sits alongside in `10-CustomContextMenu-VB`
 ## Run it
 
 ```
-dotnet run --project 10-CustomContextMenu
+dotnet run --project 10-CustomContextMenu-CS
 ```

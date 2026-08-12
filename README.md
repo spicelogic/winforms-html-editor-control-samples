@@ -48,7 +48,7 @@ target.
 git clone https://github.com/spicelogic/winforms-html-editor-control-samples.git
 cd winforms-html-editor-control-samples
 dotnet build WinFormsHtmlEditorSamples.sln
-dotnet run --project 01-Quickstart
+dotnet run --project 01-Quickstart-CS
 ```
 
 ### Targeting a different .NET version
@@ -73,17 +73,17 @@ key API members.
 
 | Folder | What it shows | Question it answers | VB.NET twin |
 | --- | --- | --- | --- |
-| [01-Quickstart](01-Quickstart) | Docking the editor to fill a form, seeding starting HTML, and a live character count from `HtmlChanged` | What is the smallest working editor host? | - |
-| [02-LoadAndSaveHtml](02-LoadAndSaveHtml) | Open/Save menu commands, and the difference between `BodyHtml` (inner content) and `DocumentHtml` (full document) | Which property do I save to a database versus a standalone HTML file? | - |
-| [03-PasteFromWord](03-PasteFromWord) | Handling the `Pasting` event to strip Word/Outlook markup with a documented regex helper, with a before/after character-count log | How do I clean up messy HTML pasted from Microsoft Word? | - |
-| [04-ToolbarCustomization](04-ToolbarCustomization) | Building a fully custom toolbar from a chosen subset of built-in buttons, plus hiding/reordering/re-icon-ing buttons on the built-in toolbars via `ToolbarItemOverrider` | How do I customize the toolbar for my own workflow? | [04-ToolbarCustomization-VB](04-ToolbarCustomization-VB) |
-| [05-MailMergeTemplate](05-MailMergeTemplate) | Registering placeholder fields, the built-in placeholder toolbar, and a live merge preview in a second read-only editor | How do I let end users build their own mail-merge templates? | - |
-| [06-DataBinding](06-DataBinding) | Binding `BodyHtml` or `DocumentHtml` to a business object through a standard `BindingSource` and `BindingNavigator` | How do I data-bind the editor's content like any other WinForms control? | [06-DataBinding-VB](06-DataBinding-VB) |
-| [07-Localization](07-Localization) | Switching the editor UI language and spell-check dictionary independently at runtime, plus overriding individual UI strings with a JSON file | How do I localize the editor UI, and override specific strings without recompiling? | [07-Localization-VB](07-Localization-VB) |
-| [08-CustomSpellChecker](08-CustomSpellChecker) | Plugging a custom spell-checking engine in via `ISpellCheckerEngine`, toggled against the built-in engine | How do I replace the built-in spell checker with my own dictionary or cloud API? | [08-CustomSpellChecker-VB](08-CustomSpellChecker-VB) |
-| [09-CustomDialog](09-CustomDialog) | Replacing every built-in editor dialog (hyperlink, image, table, table cell, spell checker, symbol picker, search/replace, YouTube insert, style builder) with your own implementation | How do I replace the editor's built-in dialogs with my own branded UI? | [09-CustomDialog-VB](09-CustomDialog-VB) |
-| [10-CustomContextMenu](10-CustomContextMenu) | Replacing the built-in right-click menu with a custom `ContextMenuStrip`, enabling/disabling items via `ContextMenuShowing` based on caret context | How do I build my own right-click menu for the editor? | [10-CustomContextMenu-VB](10-CustomContextMenu-VB) |
-| [11-FullEditorDemo](11-FullEditorDemo) | A full tour of the control: the complete default toolbar, high-DPI toolbar scaling, live spell checking with a persistent per-user dictionary, and document-level styling via the header style block | What does the editor look like fully assembled, beyond the smallest quickstart host? | [11-FullEditorDemo-VB](11-FullEditorDemo-VB) |
+| [01-Quickstart-CS](01-Quickstart-CS) | Docking the editor to fill a form, seeding starting HTML, and a live character count from `HtmlChanged` | What is the smallest working editor host? | - |
+| [02-LoadAndSaveHtml-CS](02-LoadAndSaveHtml-CS) | Open/Save menu commands, and the difference between `BodyHtml` (inner content) and `DocumentHtml` (full document) | Which property do I save to a database versus a standalone HTML file? | - |
+| [03-PasteFromWord-CS](03-PasteFromWord-CS) | Handling the `Pasting` event to strip Word/Outlook markup with a documented regex helper, with a before/after character-count log | How do I clean up messy HTML pasted from Microsoft Word? | - |
+| [04-ToolbarCustomization-CS](04-ToolbarCustomization-CS) | Building a fully custom toolbar from a chosen subset of built-in buttons, plus hiding/reordering/re-icon-ing buttons on the built-in toolbars via `ToolbarItemOverrider` | How do I customize the toolbar for my own workflow? | [04-ToolbarCustomization-VB](04-ToolbarCustomization-VB) |
+| [05-MailMergeTemplate-CS](05-MailMergeTemplate-CS) | Registering placeholder fields, the built-in placeholder toolbar, and a live merge preview in a second read-only editor | How do I let end users build their own mail-merge templates? | - |
+| [06-DataBinding-CS](06-DataBinding-CS) | Binding `BodyHtml` or `DocumentHtml` to a business object through a standard `BindingSource` and `BindingNavigator` | How do I data-bind the editor's content like any other WinForms control? | [06-DataBinding-VB](06-DataBinding-VB) |
+| [07-Localization-CS](07-Localization-CS) | Switching the editor UI language and spell-check dictionary independently at runtime, plus overriding individual UI strings with a JSON file | How do I localize the editor UI, and override specific strings without recompiling? | [07-Localization-VB](07-Localization-VB) |
+| [08-CustomSpellChecker-CS](08-CustomSpellChecker-CS) | Plugging a custom spell-checking engine in via `ISpellCheckerEngine`, toggled against the built-in engine | How do I replace the built-in spell checker with my own dictionary or cloud API? | [08-CustomSpellChecker-VB](08-CustomSpellChecker-VB) |
+| [09-CustomDialog-CS](09-CustomDialog-CS) | Replacing every built-in editor dialog (hyperlink, image, table, table cell, spell checker, symbol picker, search/replace, YouTube insert, style builder) with your own implementation | How do I replace the editor's built-in dialogs with my own branded UI? | [09-CustomDialog-VB](09-CustomDialog-VB) |
+| [10-CustomContextMenu-CS](10-CustomContextMenu-CS) | Replacing the built-in right-click menu with a custom `ContextMenuStrip`, enabling/disabling items via `ContextMenuShowing` based on caret context | How do I build my own right-click menu for the editor? | [10-CustomContextMenu-VB](10-CustomContextMenu-VB) |
+| [11-FullEditorDemo-CS](11-FullEditorDemo-CS) | A full tour of the control: the complete default toolbar, high-DPI toolbar scaling, live spell checking with a persistent per-user dictionary, and document-level styling via the header style block | What does the editor look like fully assembled, beyond the smallest quickstart host? | [11-FullEditorDemo-VB](11-FullEditorDemo-VB) |
 
 ## Quickstart code
 

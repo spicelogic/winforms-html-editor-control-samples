@@ -20,5 +20,5 @@ A VB.NET version of this sample sits alongside in `09-CustomDialog-VB`.
 ## Run it
 
 ```
-dotnet run --project 09-CustomDialog
+dotnet run --project 09-CustomDialog-CS
 ```
