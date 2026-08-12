@@ -1,0 +1,10 @@
+{
+  "Toolbar_Bold": "[CUSTOM] Bold",
+  "Toolbar_Italic": "[CUSTOM] Italic",
+  "Toolbar_Underline": "[CUSTOM] Underline",
+  "Toolbar_Cut": "[CUSTOM] Cut",
+  "Toolbar_Copy": "[CUSTOM] Copy",
+  "Toolbar_Paste": "[CUSTOM] Paste",
+  "Toolbar_Undo": "[CUSTOM] Undo",
+  "Toolbar_Redo": "[CUSTOM] Redo"
+}

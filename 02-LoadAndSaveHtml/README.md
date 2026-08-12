@@ -14,3 +14,5 @@ Key API members used: `BodyHtml`, `DocumentHtml`, `DocumentTitle`, together with
 ```
 dotnet run --project 02-LoadAndSaveHtml
 ```
+
+A VB.NET version of this sample sits alongside in `02-LoadAndSaveHtml-VB`.

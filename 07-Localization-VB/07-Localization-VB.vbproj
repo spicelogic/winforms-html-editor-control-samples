@@ -1,0 +1,37 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LocalizationSampleVB</RootNamespace>
+    <AssemblyName>LocalizationVB</AssemblyName>
+    <!-- Keep My.Application WinForms helpers but suppress the auto-generated
+         My.MyApplication.Main so Program.vb's explicit Sub Main is the sole entry point
+         (avoids BC30738). -->
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <StartupObject>LocalizationSampleVB.Program</StartupObject>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <!-- The control's own NuGet package ships a high-DPI app.manifest by design; silence the
+         build hint suggesting ApplicationHighDpiMode instead, which would conflict with it. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpiceLogic.HtmlEditor.WinForms" Version="*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="SpiceLogic.HtmlEditor.Localization\EditorStrings.pl-PL.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <!-- Reference catalog + docs for the JSON override feature: shown in Solution Explorer,
+         not copied to output (not loaded at runtime, only read by the developer). -->
+    <None Include="SpiceLogic.HtmlEditor.Localization\_OVERRIDABLE-KEYS.reference.json" />
+    <None Include="SpiceLogic.HtmlEditor.Localization\README.md" />
+    <Content Include="underline.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

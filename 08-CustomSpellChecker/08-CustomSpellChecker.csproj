@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CustomSpellChecker</RootNamespace>
+    <AssemblyName>CustomSpellChecker</AssemblyName>
+    <!-- The control's own NuGet package ships a high-DPI app.manifest by design; silence the
+         build hint suggesting ApplicationHighDpiMode instead, which would conflict with it. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Label="Content">
+    <Content Include="underline.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpiceLogic.HtmlEditor.WinForms" Version="*" />
+  </ItemGroup>
+
+</Project>

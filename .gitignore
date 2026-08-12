@@ -37,3 +37,7 @@ $RECYCLE.BIN/
 project.lock.json
 project.fragment.lock.json
 artifacts/
+
+# WPF build leaves these temporary project files behind; they are never source.
+*_wpftmp.csproj
+*_wpftmp.vbproj
