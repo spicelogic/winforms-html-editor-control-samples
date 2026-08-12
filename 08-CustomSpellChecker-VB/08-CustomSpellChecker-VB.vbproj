@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>CustomSpellChecker</RootNamespace>
+    <AssemblyName>CustomSpellCheckerVB</AssemblyName>
+    <!-- WindowsFormsWithCustomSubMain: keep My.Application WinForms helpers but suppress
+         the auto-generated My.MyApplication.Main so Program.vb's explicit Sub Main is the
+         sole entry point (avoids BC30737). -->
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <StartupObject>CustomSpellChecker.Program</StartupObject>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <!-- The control's own NuGet package ships a high-DPI app.manifest by design; silence the
+         build hint suggesting ApplicationHighDpiMode instead, which would conflict with it. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup Label="Content">
+    <Content Include="underline.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpiceLogic.HtmlEditor.WinForms" Version="*" />
+  </ItemGroup>
+
+</Project>

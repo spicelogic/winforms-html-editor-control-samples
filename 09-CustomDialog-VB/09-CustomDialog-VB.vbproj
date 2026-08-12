@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <!-- RootNamespace must match the namespace declared in the .vb source files
+         (Namespace Global.CustomDialog), because MSBuild prefixes the embedded
+         MainForm.resx logical name with RootNamespace while
+         ComponentResourceManager(GetType(MainForm)) looks it up under the
+         form's full type name. -->
+    <RootNamespace>CustomDialog</RootNamespace>
+    <AssemblyName>CustomDialog-VB</AssemblyName>
+    <!-- WindowsFormsWithCustomSubMain: keep My.Application WinForms helpers but
+         suppress the auto-generated My.MyApplication.Main so Program.vb's
+         explicit Sub Main is the sole entry point (avoids BC30738). -->
+    <MyType>WindowsFormsWithCustomSubMain</MyType>
+    <StartupObject>CustomDialog.Program</StartupObject>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionStrict>On</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <!-- The control's own NuGet package ships a high-DPI app.manifest by design; silence the
+         build hint suggesting HighDpiMode instead, which would conflict with it. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpiceLogic.HtmlEditor.WinForms" Version="*" />
+  </ItemGroup>
+
+</Project>

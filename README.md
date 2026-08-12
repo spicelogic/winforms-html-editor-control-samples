@@ -5,9 +5,14 @@ runnable sample projects for the SpiceLogic .NET windows forms html editor contr
 c# winform wysiwyg html editor you install straight from NuGet. If you have been
 searching for a winforms rich text editor that gives you full HTML (not just RTF), clean
 paste from Word, mail merge, and a real editor API, these samples show the everyday
-patterns: quickstart, load/save, Word paste cleanup, toolbar customization, and mail
-merge templates. Search for "winforms html editor nuget" and this control, and this
+patterns: quickstart, load/save, Word paste cleanup, toolbar and context menu
+customization, data binding, localization, custom spell checking, custom dialogs, and
+mail merge templates. Search for "winforms html editor nuget" and this control, and this
 repo, are exactly what you will find.
+
+Every sample from 04 onward ships as a matching pair: a C# project and a VB.NET twin in a
+`-VB` folder next to it, both wired into the same solution, so VB.NET developers get the
+identical walkthrough in their own language rather than a C#-to-VB translation exercise.
 
 ## What this is
 
@@ -48,8 +53,8 @@ dotnet run --project 01-Quickstart
 ### Targeting a different .NET version
 
 `Directory.Build.props` at the repo root holds a single `<TargetFramework>` line that
-every sample project inherits. Change that one line and rebuild to retarget all five
-samples at once. Valid values, matching what the NuGet package ships:
+every sample project inherits. Change that one line and rebuild to retarget every C# and
+VB.NET sample at once. Valid values, matching what the NuGet package ships:
 
 - `net48`, `net472`, `net45` (.NET Framework, including .NET Framework 4.8)
 - `net5.0-windows`, `net6.0-windows`, `net7.0-windows`
@@ -61,13 +66,23 @@ they also build cleanly on .NET Framework, where the source-generated
 
 ## Samples
 
-| Folder | What it shows | Question it answers |
-| --- | --- | --- |
-| [01-Quickstart](01-Quickstart) | Docking the editor to fill a form, seeding starting HTML, and a live character count from `HtmlChanged` | What is the smallest working editor host? |
-| [02-LoadAndSaveHtml](02-LoadAndSaveHtml) | Open/Save menu commands, and the difference between `BodyHtml` and `DocumentHtml` | Which property do I save to a database versus a standalone HTML file? |
-| [03-PasteFromWord](03-PasteFromWord) | Handling the `Pasting` event to strip Word/Outlook markup with a documented regex helper | How do I clean up messy HTML pasted from Microsoft Word? |
-| [04-ToolbarCustomization](04-ToolbarCustomization) | Hiding built-in toolbar buttons and adding a custom `ToolStripButton` | How do I customize the toolbar for my own workflow? |
-| [05-MailMergeTemplate](05-MailMergeTemplate) | Registering placeholder fields, the built-in placeholder toolbar, and a live merge preview | How do I let end users build their own mail-merge templates? |
+Eleven samples, eighteen projects in the solution: every sample from 04 onward has a
+"VB.NET twin" folder alongside its C# folder, using the identical scenario and the same
+key API members.
+
+| Folder | What it shows | Question it answers | VB.NET twin |
+| --- | --- | --- | --- |
+| [01-Quickstart](01-Quickstart) | Docking the editor to fill a form, seeding starting HTML, and a live character count from `HtmlChanged` | What is the smallest working editor host? | - |
+| [02-LoadAndSaveHtml](02-LoadAndSaveHtml) | Open/Save menu commands, and the difference between `BodyHtml` (inner content) and `DocumentHtml` (full document) | Which property do I save to a database versus a standalone HTML file? | - |
+| [03-PasteFromWord](03-PasteFromWord) | Handling the `Pasting` event to strip Word/Outlook markup with a documented regex helper, with a before/after character-count log | How do I clean up messy HTML pasted from Microsoft Word? | - |
+| [04-ToolbarCustomization](04-ToolbarCustomization) | Building a fully custom toolbar from a chosen subset of built-in buttons, plus hiding/reordering/re-icon-ing buttons on the built-in toolbars via `ToolbarItemOverrider` | How do I customize the toolbar for my own workflow? | [04-ToolbarCustomization-VB](04-ToolbarCustomization-VB) |
+| [05-MailMergeTemplate](05-MailMergeTemplate) | Registering placeholder fields, the built-in placeholder toolbar, and a live merge preview in a second read-only editor | How do I let end users build their own mail-merge templates? | - |
+| [06-DataBinding](06-DataBinding) | Binding `BodyHtml` or `DocumentHtml` to a business object through a standard `BindingSource` and `BindingNavigator` | How do I data-bind the editor's content like any other WinForms control? | [06-DataBinding-VB](06-DataBinding-VB) |
+| [07-Localization](07-Localization) | Switching the editor UI language and spell-check dictionary independently at runtime, plus overriding individual UI strings with a JSON file | How do I localize the editor UI, and override specific strings without recompiling? | [07-Localization-VB](07-Localization-VB) |
+| [08-CustomSpellChecker](08-CustomSpellChecker) | Plugging a custom spell-checking engine in via `ISpellCheckerEngine`, toggled against the built-in engine | How do I replace the built-in spell checker with my own dictionary or cloud API? | [08-CustomSpellChecker-VB](08-CustomSpellChecker-VB) |
+| [09-CustomDialog](09-CustomDialog) | Replacing every built-in editor dialog (hyperlink, image, table, table cell, spell checker, symbol picker, search/replace, YouTube insert, style builder) with your own implementation | How do I replace the editor's built-in dialogs with my own branded UI? | [09-CustomDialog-VB](09-CustomDialog-VB) |
+| [10-CustomContextMenu](10-CustomContextMenu) | Replacing the built-in right-click menu with a custom `ContextMenuStrip`, enabling/disabling items via `ContextMenuShowing` based on caret context | How do I build my own right-click menu for the editor? | [10-CustomContextMenu-VB](10-CustomContextMenu-VB) |
+| [11-FullEditorDemo](11-FullEditorDemo) | A full tour of the control: the complete default toolbar, high-DPI toolbar scaling, live spell checking with a persistent per-user dictionary, and document-level styling via the header style block | What does the editor look like fully assembled, beyond the smallest quickstart host? | [11-FullEditorDemo-VB](11-FullEditorDemo-VB) |
 
 ## Quickstart code
 
