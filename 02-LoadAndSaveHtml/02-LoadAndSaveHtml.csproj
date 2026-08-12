@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LoadAndSaveHtml</RootNamespace>
+    <AssemblyName>LoadAndSaveHtml</AssemblyName>
+    <!-- The control's own NuGet package ships a high-DPI app.manifest by design; silence the
+         build hint suggesting ApplicationHighDpiMode instead, which would conflict with it. -->
+    <NoWarn>$(NoWarn);WFAC010</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SpiceLogic.HtmlEditor.WinForms" Version="9.5.7" />
+  </ItemGroup>
+
+</Project>

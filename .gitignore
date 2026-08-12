@@ -1,0 +1,39 @@
+## .NET / Visual Studio standard ignore
+
+# Build results
+[Bb]in/
+[Oo]bj/
+
+# Visual Studio cache/options directory
+.vs/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+
+# NuGet packages directory (restored on build)
+*.nupkg
+**/packages/*
+!**/packages/build/
+
+# Rider
+.idea/
+
+# VS Code
+.vscode/
+
+# Windows thumbnail cache
+Thumbs.db
+ehthumbs.db
+
+# OS junk
+Desktop.ini
+$RECYCLE.BIN/
+
+# dotnet artifacts
+*.dll
+*.pdb
+project.lock.json
+project.fragment.lock.json
+artifacts/
