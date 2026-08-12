@@ -18,3 +18,5 @@ dotnet run --project 03-PasteFromWord
 
 Then copy some formatted text from Word or Outlook and paste it into the editor (Ctrl+V)
 to see the cleanup log update.
+
+A VB.NET version of this sample sits alongside in `03-PasteFromWord-VB`.

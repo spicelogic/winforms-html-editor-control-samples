@@ -38,10 +38,11 @@ latest published release and you are never evaluating an old build.
 
 Prerequisites: Windows. The control itself supports .NET Framework 4.5, 4.7.2, and 4.8,
 plus .NET 5 through .NET 10, all on Windows, so it runs on whatever target framework your
-own app already uses. The samples in this repository are checked in targeting
-net8.0-windows purely as a default, and you need the matching SDK for whichever target
-you build against (the .NET 8 SDK for the default, or .NET Framework 4.8 plus the .NET
-SDK if you retarget to net48).
+own app already uses. The samples in this repository are checked in targeting `net48`,
+because .NET Framework 4.8 is part of Windows 10 (1903 and later) and Windows 11, so they
+run on a stock Windows machine with no runtime to install. Point them at whatever your own
+application uses with the one-line change below, and install the matching SDK for that
+target.
 
 ```
 git clone https://github.com/spicelogic/winforms-html-editor-control-samples.git
@@ -56,9 +57,9 @@ dotnet run --project 01-Quickstart
 every sample project inherits. Change that one line and rebuild to retarget every C# and
 VB.NET sample at once. Valid values, matching what the NuGet package ships:
 
-- `net48`, `net472`, `net45` (.NET Framework, including .NET Framework 4.8)
+- `net48` (the default here), `net472`, `net45` (.NET Framework)
 - `net5.0-windows`, `net6.0-windows`, `net7.0-windows`
-- `net8.0-windows` (the default here), `net9.0-windows`, `net10.0-windows`
+- `net8.0-windows`, `net9.0-windows`, `net10.0-windows`
 
 The samples include the small `#if NET6_0_OR_GREATER` block each `Program.cs` needs so
 they also build cleanly on .NET Framework, where the source-generated

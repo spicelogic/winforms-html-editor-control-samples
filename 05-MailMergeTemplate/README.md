@@ -10,6 +10,8 @@ from a small in-memory sample record, and shows the merged result in the preview
 Key API members used: `Content.MailMerge.PlaceholderFields`, `PlaceholderField`,
 `ShowPlaceholderToolbar`, `BodyHtml`, `ChangeReadOnlyMode`.
 
+A VB.NET version of this sample sits alongside in `05-MailMergeTemplate-VB`.
+
 ## Run it
 
 ```
