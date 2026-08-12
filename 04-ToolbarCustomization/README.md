@@ -1,21 +1,14 @@
 # 04 - Toolbar customization
 
-Two tabs covering the full range of toolbar customization. "Build a custom toolbar"
-hides the built-in toolbars and moves a chosen subset of built-in buttons, in any
-order, onto a `ToolStrip` you own. "Customize the built-in toolbars" keeps the
-built-in toolbars but hides individual buttons (both through `ToolbarItemOverrider`
-and through direct shortcut properties like `BtnSymbol`), swaps a button icon,
-redirects the Save button's click to custom logic, retags a tooltip, and appends
-custom buttons that act on the document.
+Hides a couple of built-in toolbar buttons (`BtnInsertYouTubeVideo`, `BtnSymbol`) by
+setting their `Visible` property to false, and adds a custom `ToolStripButton`
+("Insert signature") to `Toolbar2` that inserts a fixed HTML block at the end of
+`BodyHtml` when clicked.
 
-Key API members used: `Toolbar1`, `Toolbar2`, `ToolbarItemOverrider`,
-`ToolbarItemOverrider.ToolbarItems`, `ToolbarItemOverrider.SaveButtonClicked`,
-`BtnSymbol`, `BtnInsertYouTubeVideo`, `BodyHtml`.
+Key API members used: `BtnInsertYouTubeVideo`, `BtnSymbol`, `Toolbar2`, `BodyHtml`.
 
 ## Run it
 
 ```
 dotnet run --project 04-ToolbarCustomization
 ```
-
-A VB.NET version of this sample sits alongside in `04-ToolbarCustomization-VB`.
