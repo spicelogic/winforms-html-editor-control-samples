@@ -10,7 +10,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SpiceLogic.HtmlEditor.WinForms" Version="9.5.7" />
+    <PackageReference Include="SpiceLogic.HtmlEditor.WinForms" Version="*" />
   </ItemGroup>
 
 </Project>
