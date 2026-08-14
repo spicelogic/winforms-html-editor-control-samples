@@ -1,5 +1,3 @@
-using SpiceLogic.HtmlEditor.WinForms;
-
 namespace LoadAndSaveHtml;
 
 /// <summary>
@@ -14,39 +12,17 @@ namespace LoadAndSaveHtml;
 ///                  and any style/meta content. Use this when you want a
 ///                  file that can be opened standalone in a browser.
 ///
-/// A radio button lets you pick which property Open/Save uses, so you can see
-/// the difference in the saved .html file.
+/// The layout (menu, radio buttons, docked editor) lives in the designer; open
+/// MainForm.cs in the Visual Studio designer to see it. A radio button lets you pick
+/// which property Open/Save uses, so you can see the difference in the saved .html file.
 /// </summary>
-public class MainForm : Form
+public partial class MainForm : Form
 {
-    private readonly WinFormHtmlEditor _editor = new() { Dock = DockStyle.Fill };
-    private readonly RadioButton _bodyHtmlOption = new() { Text = "Use BodyHtml (inner content only)", Checked = true, AutoSize = true };
-    private readonly RadioButton _documentHtmlOption = new() { Text = "Use DocumentHtml (full document)", AutoSize = true };
-    private readonly FlowLayoutPanel _optionsPanel = new() { Dock = DockStyle.Top, Height = 32, FlowDirection = FlowDirection.LeftToRight };
-
     public MainForm()
     {
-        Text = "SpiceLogic WinForms HTML editor - load and save HTML";
-        Width = 1000;
-        Height = 700;
+        InitializeComponent();
 
         // No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
-
-        var menuStrip = new MenuStrip();
-        var fileMenu = new ToolStripMenuItem("File");
-        var openItem = new ToolStripMenuItem("Open...", null, OnOpen);
-        var saveItem = new ToolStripMenuItem("Save as...", null, OnSave);
-        fileMenu.DropDownItems.Add(openItem);
-        fileMenu.DropDownItems.Add(saveItem);
-        menuStrip.Items.Add(fileMenu);
-        MainMenuStrip = menuStrip;
-
-        _optionsPanel.Controls.Add(_bodyHtmlOption);
-        _optionsPanel.Controls.Add(_documentHtmlOption);
-
-        Controls.Add(_editor);
-        Controls.Add(_optionsPanel);
-        Controls.Add(menuStrip);
 
         _editor.DocumentTitle = "Sample document";
         _editor.BodyHtml = "<p>Open or save this content as HTML using the File menu above.</p>";

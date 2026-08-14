@@ -1,5 +1,4 @@
 using SpiceLogic.HtmlEditor.Abstractions;
-using SpiceLogic.HtmlEditor.WinForms;
 using SpiceLogic.HtmlEditor.WinForms.Models.BOs.EditorEventArgs;
 using mshtml;
 
@@ -12,100 +11,23 @@ namespace CustomContextMenu;
 /// <c>ContextMenuShowing</c> event to enable, disable, and show or hide individual items
 /// based on what is under the cursor - for example the table submenu only appears when
 /// the caret is inside a table.
+///
+/// The menu structure and the editor's EditorContextMenuStrip assignment live in the
+/// designer; open MainForm.cs in the Visual Studio designer and select the context menu
+/// in the component tray to edit the items. This file wires up what each item does and
+/// loads the icons from the Resources folder at runtime.
 /// </summary>
-public class MainForm : Form
+public partial class MainForm : Form
 {
-    private readonly WinFormHtmlEditor _editor = new() { Dock = DockStyle.Fill };
-
-    private readonly ContextMenuStrip _contextMenu = new();
-    private readonly ToolStripMenuItem _imagePropertiesItem;
-    private readonly ToolStripMenuItem _linkPropertiesItem;
-    private readonly ToolStripMenuItem _cellPropertiesItem;
-    private readonly ToolStripMenuItem _tableMenu;
-    private readonly ToolStripMenuItem _mergeCellsItem;
-    private readonly ToolStripMenuItem _youTubeItem;
-    private readonly ToolStripSeparator _tableSeparator = new();
-    private readonly ToolStripMenuItem _cutItem;
-    private readonly ToolStripMenuItem _copyItem;
-    private readonly ToolStripMenuItem _deleteItem;
-
     public MainForm()
     {
-        Text = "SpiceLogic WinForms HTML editor - custom context menu";
-        Width = 1000;
-        Height = 700;
+        InitializeComponent();
 
         // No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
 
-        Controls.Add(_editor);
+        AssignIcons();
+        WireUpCommands();
 
-        _imagePropertiesItem = new ToolStripMenuItem("Image properties", LoadIcon("picture2.png"),
-            (_, e) => _editor.ToolbarItemOverrider.OnImageButtonClicked(this, e));
-        _linkPropertiesItem = new ToolStripMenuItem("Link properties", LoadIcon("hyperlink.gif"),
-            (_, e) => _editor.ToolbarItemOverrider.OnHyperLinkButtonClicked(this, e));
-        _cellPropertiesItem = new ToolStripMenuItem("Cell properties", LoadIcon("tableCell.png"),
-            (_, e) => _editor.ToolbarItemOverrider.OnTableCellEditingClicked(this, e));
-
-        _mergeCellsItem = new ToolStripMenuItem("Merge cells", LoadIcon("mergeCell.png"),
-            (_, _) => _editor.Content.TableAuthoringService.MergeSelectedCells());
-
-        _tableMenu = new ToolStripMenuItem("Table", LoadIcon("tableInGeneral.png"));
-        _tableMenu.DropDownItems.AddRange(
-        [
-            new ToolStripMenuItem("Table properties", LoadIcon("table.gif"),
-                (_, e) => _editor.ToolbarItemOverrider.OnTableModifyButtonClicked(this, e)),
-            new ToolStripMenuItem("Insert row (before)", LoadIcon("tblInsertRow.png"),
-                (_, _) => _editor.Content.TableAuthoringService.InsertRow(InsertPositions.Before)),
-            new ToolStripMenuItem("Insert row (after)", LoadIcon("tblInsertRow.png"),
-                (_, _) => _editor.Content.TableAuthoringService.InsertRow(InsertPositions.After)),
-            new ToolStripMenuItem("Delete row", LoadIcon("tblDeleteRow.png"),
-                (_, _) => _editor.Content.TableAuthoringService.DeleteRow()),
-            new ToolStripMenuItem("Insert column (before)", LoadIcon("tblInsertColumn.png"),
-                (_, _) => _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.Before)),
-            new ToolStripMenuItem("Insert column (after)", LoadIcon("tblInsertColumn.png"),
-                (_, _) => _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.After)),
-            new ToolStripMenuItem("Delete column", LoadIcon("tblDeleteColumn.png"),
-                (_, _) => _editor.Content.TableAuthoringService.DeleteColumn()),
-            _mergeCellsItem
-        ]);
-
-        _youTubeItem = new ToolStripMenuItem("YouTube video properties", LoadIcon("youTube.png"),
-            (_, e) => _editor.ToolbarItemOverrider.OnYouTubeVideoInsertButtonClicked(this, e));
-
-        var alignmentMenu = new ToolStripMenuItem("Alignment");
-        alignmentMenu.DropDownItems.AddRange(
-        [
-            new ToolStripMenuItem("Left", LoadIcon("align_left.gif"), (_, _) => _editor.Formatting.AlignLeft()),
-            new ToolStripMenuItem("Center", LoadIcon("align_center.gif"), (_, _) => _editor.Formatting.AlignCenter()),
-            new ToolStripMenuItem("Right", LoadIcon("align_right.gif"), (_, _) => _editor.Formatting.AlignRight()),
-            new ToolStripMenuItem("Remove alignment", LoadIcon("removeAlign.png"), (_, _) => _editor.Formatting.RemoveAlignment())
-        ]);
-
-        _cutItem = new ToolStripMenuItem("Cut", LoadIcon("btnCut.png"), (_, _) => _editor.Editor.Cut());
-        _copyItem = new ToolStripMenuItem("Copy", LoadIcon("btnCopy.png"), (_, _) => _editor.Editor.Copy());
-        var pasteItem = new ToolStripMenuItem("Paste", LoadIcon("btnPaste.png"), (_, _) => _editor.Editor.Paste());
-        _deleteItem = new ToolStripMenuItem("Delete", LoadIcon("Delete.png"), (_, _) => _editor.Editor.Delete());
-        var selectAllItem = new ToolStripMenuItem("Select all", LoadIcon("selectAll.png"), (_, _) => _editor.Selection.SelectAll());
-
-        _contextMenu.Items.AddRange(
-        [
-            _imagePropertiesItem,
-            _linkPropertiesItem,
-            _cellPropertiesItem,
-            _tableMenu,
-            _youTubeItem,
-            _tableSeparator,
-            alignmentMenu,
-            new ToolStripSeparator(),
-            _cutItem,
-            _copyItem,
-            pasteItem,
-            _deleteItem,
-            new ToolStripSeparator(),
-            selectAllItem
-        ]);
-
-        _editor.EditorContextMenuStrip = _contextMenu;
         _editor.ContextMenuShowing += OnContextMenuShowing;
 
         _editor.BodyHtml = @"
@@ -126,6 +48,69 @@ public class MainForm : Form
             </table>
             <p style='margin-top:10px;'>Select some text and right-click to see Cut, Copy, and Delete
                become enabled in the context menu.</p>";
+    }
+
+    /// <summary>
+    /// The icons ship as loose files in the Resources folder rather than embedded resources,
+    /// so they are assigned here instead of being serialized into the designer's .resx.
+    /// </summary>
+    private void AssignIcons()
+    {
+        _imagePropertiesItem.Image = LoadIcon("picture2.png");
+        _linkPropertiesItem.Image = LoadIcon("hyperlink.gif");
+        _cellPropertiesItem.Image = LoadIcon("tableCell.png");
+        _tableMenu.Image = LoadIcon("tableInGeneral.png");
+        _tablePropertiesItem.Image = LoadIcon("table.gif");
+        _insertRowBeforeItem.Image = LoadIcon("tblInsertRow.png");
+        _insertRowAfterItem.Image = LoadIcon("tblInsertRow.png");
+        _deleteRowItem.Image = LoadIcon("tblDeleteRow.png");
+        _insertColumnBeforeItem.Image = LoadIcon("tblInsertColumn.png");
+        _insertColumnAfterItem.Image = LoadIcon("tblInsertColumn.png");
+        _deleteColumnItem.Image = LoadIcon("tblDeleteColumn.png");
+        _mergeCellsItem.Image = LoadIcon("mergeCell.png");
+        _youTubeItem.Image = LoadIcon("youTube.png");
+        _alignLeftItem.Image = LoadIcon("align_left.gif");
+        _alignCenterItem.Image = LoadIcon("align_center.gif");
+        _alignRightItem.Image = LoadIcon("align_right.gif");
+        _removeAlignmentItem.Image = LoadIcon("removeAlign.png");
+        _cutItem.Image = LoadIcon("btnCut.png");
+        _copyItem.Image = LoadIcon("btnCopy.png");
+        _pasteItem.Image = LoadIcon("btnPaste.png");
+        _deleteItem.Image = LoadIcon("Delete.png");
+        _selectAllItem.Image = LoadIcon("selectAll.png");
+    }
+
+    /// <summary>
+    /// Points each menu item at the editor service that performs the action. The dialog
+    /// items reuse the toolbar's own handlers, so a right-click opens exactly the same
+    /// dialog the toolbar button would.
+    /// </summary>
+    private void WireUpCommands()
+    {
+        _imagePropertiesItem.Click += (_, e) => _editor.ToolbarItemOverrider.OnImageButtonClicked(this, e);
+        _linkPropertiesItem.Click += (_, e) => _editor.ToolbarItemOverrider.OnHyperLinkButtonClicked(this, e);
+        _cellPropertiesItem.Click += (_, e) => _editor.ToolbarItemOverrider.OnTableCellEditingClicked(this, e);
+        _youTubeItem.Click += (_, e) => _editor.ToolbarItemOverrider.OnYouTubeVideoInsertButtonClicked(this, e);
+        _tablePropertiesItem.Click += (_, e) => _editor.ToolbarItemOverrider.OnTableModifyButtonClicked(this, e);
+
+        _insertRowBeforeItem.Click += (_, _) => _editor.Content.TableAuthoringService.InsertRow(InsertPositions.Before);
+        _insertRowAfterItem.Click += (_, _) => _editor.Content.TableAuthoringService.InsertRow(InsertPositions.After);
+        _deleteRowItem.Click += (_, _) => _editor.Content.TableAuthoringService.DeleteRow();
+        _insertColumnBeforeItem.Click += (_, _) => _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.Before);
+        _insertColumnAfterItem.Click += (_, _) => _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.After);
+        _deleteColumnItem.Click += (_, _) => _editor.Content.TableAuthoringService.DeleteColumn();
+        _mergeCellsItem.Click += (_, _) => _editor.Content.TableAuthoringService.MergeSelectedCells();
+
+        _alignLeftItem.Click += (_, _) => _editor.Formatting.AlignLeft();
+        _alignCenterItem.Click += (_, _) => _editor.Formatting.AlignCenter();
+        _alignRightItem.Click += (_, _) => _editor.Formatting.AlignRight();
+        _removeAlignmentItem.Click += (_, _) => _editor.Formatting.RemoveAlignment();
+
+        _cutItem.Click += (_, _) => _editor.Editor.Cut();
+        _copyItem.Click += (_, _) => _editor.Editor.Copy();
+        _pasteItem.Click += (_, _) => _editor.Editor.Paste();
+        _deleteItem.Click += (_, _) => _editor.Editor.Delete();
+        _selectAllItem.Click += (_, _) => _editor.Selection.SelectAll();
     }
 
     private static Image? LoadIcon(string fileName)

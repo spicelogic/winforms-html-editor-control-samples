@@ -2,7 +2,6 @@ Imports System.Drawing
 Imports System.IO
 Imports System.Windows.Forms
 Imports SpiceLogic.HtmlEditor.Abstractions
-Imports SpiceLogic.HtmlEditor.WinForms
 Imports SpiceLogic.HtmlEditor.WinForms.Models.BOs.EditorEventArgs
 Imports mshtml
 
@@ -12,97 +11,22 @@ Imports mshtml
 ''' image/link/cell properties), and uses the ContextMenuShowing event to enable, disable,
 ''' and show or hide individual items based on what is under the cursor - for example the
 ''' table submenu only appears when the caret is inside a table.
+'''
+''' The menu structure and the editor's EditorContextMenuStrip assignment live in the
+''' designer; open MainForm.vb in the Visual Studio designer and select the context menu
+''' in the component tray to edit the items. This file wires up what each item does and
+''' loads the icons from the Resources folder at runtime.
 ''' </summary>
-Public Class MainForm
+Partial Public Class MainForm
     Inherits Form
 
-    Private WithEvents _editor As New WinFormHtmlEditor() With {.Dock = DockStyle.Fill}
-
-    Private ReadOnly _contextMenu As New ContextMenuStrip()
-    Private ReadOnly _imagePropertiesItem As ToolStripMenuItem
-    Private ReadOnly _linkPropertiesItem As ToolStripMenuItem
-    Private ReadOnly _cellPropertiesItem As ToolStripMenuItem
-    Private ReadOnly _tableMenu As ToolStripMenuItem
-    Private ReadOnly _mergeCellsItem As ToolStripMenuItem
-    Private ReadOnly _youTubeItem As ToolStripMenuItem
-    Private ReadOnly _tableSeparator As New ToolStripSeparator()
-    Private ReadOnly _cutItem As ToolStripMenuItem
-    Private ReadOnly _copyItem As ToolStripMenuItem
-    Private ReadOnly _deleteItem As ToolStripMenuItem
-
     Public Sub New()
-        Text = "SpiceLogic WinForms HTML editor - custom context menu"
-        Width = 1000
-        Height = 700
+        InitializeComponent()
 
         ' No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
 
-        Controls.Add(_editor)
-
-        _imagePropertiesItem = New ToolStripMenuItem("Image properties", LoadIcon("picture2.png"),
-            Sub(s, e) _editor.ToolbarItemOverrider.OnImageButtonClicked(Me, e))
-        _linkPropertiesItem = New ToolStripMenuItem("Link properties", LoadIcon("hyperlink.gif"),
-            Sub(s, e) _editor.ToolbarItemOverrider.OnHyperLinkButtonClicked(Me, e))
-        _cellPropertiesItem = New ToolStripMenuItem("Cell properties", LoadIcon("tableCell.png"),
-            Sub(s, e) _editor.ToolbarItemOverrider.OnTableCellEditingClicked(Me, e))
-
-        _mergeCellsItem = New ToolStripMenuItem("Merge cells", LoadIcon("mergeCell.png"),
-            Sub(s, e) _editor.Content.TableAuthoringService.MergeSelectedCells())
-
-        _tableMenu = New ToolStripMenuItem("Table", LoadIcon("tableInGeneral.png"))
-        _tableMenu.DropDownItems.AddRange(New ToolStripItem() {
-            New ToolStripMenuItem("Table properties", LoadIcon("table.gif"),
-                Sub(s, e) _editor.ToolbarItemOverrider.OnTableModifyButtonClicked(Me, e)),
-            New ToolStripMenuItem("Insert row (before)", LoadIcon("tblInsertRow.png"),
-                Sub(s, e) _editor.Content.TableAuthoringService.InsertRow(InsertPositions.Before)),
-            New ToolStripMenuItem("Insert row (after)", LoadIcon("tblInsertRow.png"),
-                Sub(s, e) _editor.Content.TableAuthoringService.InsertRow(InsertPositions.After)),
-            New ToolStripMenuItem("Delete row", LoadIcon("tblDeleteRow.png"),
-                Sub(s, e) _editor.Content.TableAuthoringService.DeleteRow()),
-            New ToolStripMenuItem("Insert column (before)", LoadIcon("tblInsertColumn.png"),
-                Sub(s, e) _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.Before)),
-            New ToolStripMenuItem("Insert column (after)", LoadIcon("tblInsertColumn.png"),
-                Sub(s, e) _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.After)),
-            New ToolStripMenuItem("Delete column", LoadIcon("tblDeleteColumn.png"),
-                Sub(s, e) _editor.Content.TableAuthoringService.DeleteColumn()),
-            _mergeCellsItem
-        })
-
-        _youTubeItem = New ToolStripMenuItem("YouTube video properties", LoadIcon("youTube.png"),
-            Sub(s, e) _editor.ToolbarItemOverrider.OnYouTubeVideoInsertButtonClicked(Me, e))
-
-        Dim alignmentMenu = New ToolStripMenuItem("Alignment")
-        alignmentMenu.DropDownItems.AddRange(New ToolStripItem() {
-            New ToolStripMenuItem("Left", LoadIcon("align_left.gif"), Sub(s, e) _editor.Formatting.AlignLeft()),
-            New ToolStripMenuItem("Center", LoadIcon("align_center.gif"), Sub(s, e) _editor.Formatting.AlignCenter()),
-            New ToolStripMenuItem("Right", LoadIcon("align_right.gif"), Sub(s, e) _editor.Formatting.AlignRight()),
-            New ToolStripMenuItem("Remove alignment", LoadIcon("removeAlign.png"), Sub(s, e) _editor.Formatting.RemoveAlignment())
-        })
-
-        _cutItem = New ToolStripMenuItem("Cut", LoadIcon("btnCut.png"), Sub(s, e) _editor.Editor.Cut())
-        _copyItem = New ToolStripMenuItem("Copy", LoadIcon("btnCopy.png"), Sub(s, e) _editor.Editor.Copy())
-        Dim pasteItem = New ToolStripMenuItem("Paste", LoadIcon("btnPaste.png"), Sub(s, e) _editor.Editor.Paste())
-        _deleteItem = New ToolStripMenuItem("Delete", LoadIcon("Delete.png"), Sub(s, e) _editor.Editor.Delete())
-        Dim selectAllItem = New ToolStripMenuItem("Select all", LoadIcon("selectAll.png"), Sub(s, e) _editor.Selection.SelectAll())
-
-        _contextMenu.Items.AddRange(New ToolStripItem() {
-            _imagePropertiesItem,
-            _linkPropertiesItem,
-            _cellPropertiesItem,
-            _tableMenu,
-            _youTubeItem,
-            _tableSeparator,
-            alignmentMenu,
-            New ToolStripSeparator(),
-            _cutItem,
-            _copyItem,
-            pasteItem,
-            _deleteItem,
-            New ToolStripSeparator(),
-            selectAllItem
-        })
-
-        _editor.EditorContextMenuStrip = _contextMenu
+        AssignIcons()
+        WireUpCommands()
 
         _editor.BodyHtml = "
             <h3>Right-click to try the custom context menu</h3>
@@ -122,6 +46,67 @@ Public Class MainForm
             </table>
             <p style='margin-top:10px;'>Select some text and right-click to see Cut, Copy, and Delete
                become enabled in the context menu.</p>"
+    End Sub
+
+    ''' <summary>
+    ''' The icons ship as loose files in the Resources folder rather than embedded resources,
+    ''' so they are assigned here instead of being serialized into the designer's .resx.
+    ''' </summary>
+    Private Sub AssignIcons()
+        _imagePropertiesItem.Image = LoadIcon("picture2.png")
+        _linkPropertiesItem.Image = LoadIcon("hyperlink.gif")
+        _cellPropertiesItem.Image = LoadIcon("tableCell.png")
+        _tableMenu.Image = LoadIcon("tableInGeneral.png")
+        _tablePropertiesItem.Image = LoadIcon("table.gif")
+        _insertRowBeforeItem.Image = LoadIcon("tblInsertRow.png")
+        _insertRowAfterItem.Image = LoadIcon("tblInsertRow.png")
+        _deleteRowItem.Image = LoadIcon("tblDeleteRow.png")
+        _insertColumnBeforeItem.Image = LoadIcon("tblInsertColumn.png")
+        _insertColumnAfterItem.Image = LoadIcon("tblInsertColumn.png")
+        _deleteColumnItem.Image = LoadIcon("tblDeleteColumn.png")
+        _mergeCellsItem.Image = LoadIcon("mergeCell.png")
+        _youTubeItem.Image = LoadIcon("youTube.png")
+        _alignLeftItem.Image = LoadIcon("align_left.gif")
+        _alignCenterItem.Image = LoadIcon("align_center.gif")
+        _alignRightItem.Image = LoadIcon("align_right.gif")
+        _removeAlignmentItem.Image = LoadIcon("removeAlign.png")
+        _cutItem.Image = LoadIcon("btnCut.png")
+        _copyItem.Image = LoadIcon("btnCopy.png")
+        _pasteItem.Image = LoadIcon("btnPaste.png")
+        _deleteItem.Image = LoadIcon("Delete.png")
+        _selectAllItem.Image = LoadIcon("selectAll.png")
+    End Sub
+
+    ''' <summary>
+    ''' Points each menu item at the editor service that performs the action. The dialog
+    ''' items reuse the toolbar's own handlers, so a right-click opens exactly the same
+    ''' dialog the toolbar button would.
+    ''' </summary>
+    Private Sub WireUpCommands()
+        AddHandler _imagePropertiesItem.Click, Sub(s, e) _editor.ToolbarItemOverrider.OnImageButtonClicked(Me, e)
+        AddHandler _linkPropertiesItem.Click, Sub(s, e) _editor.ToolbarItemOverrider.OnHyperLinkButtonClicked(Me, e)
+        AddHandler _cellPropertiesItem.Click, Sub(s, e) _editor.ToolbarItemOverrider.OnTableCellEditingClicked(Me, e)
+        AddHandler _youTubeItem.Click, Sub(s, e) _editor.ToolbarItemOverrider.OnYouTubeVideoInsertButtonClicked(Me, e)
+        AddHandler _tablePropertiesItem.Click, Sub(s, e) _editor.ToolbarItemOverrider.OnTableModifyButtonClicked(Me, e)
+
+        AddHandler _insertRowBeforeItem.Click, Sub(s, e) _editor.Content.TableAuthoringService.InsertRow(InsertPositions.Before)
+        AddHandler _insertRowAfterItem.Click, Sub(s, e) _editor.Content.TableAuthoringService.InsertRow(InsertPositions.After)
+        AddHandler _deleteRowItem.Click, Sub(s, e) _editor.Content.TableAuthoringService.DeleteRow()
+        AddHandler _insertColumnBeforeItem.Click, Sub(s, e) _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.Before)
+        AddHandler _insertColumnAfterItem.Click, Sub(s, e) _editor.Content.TableAuthoringService.InsertColumn(InsertPositions.After)
+        AddHandler _deleteColumnItem.Click, Sub(s, e) _editor.Content.TableAuthoringService.DeleteColumn()
+        AddHandler _mergeCellsItem.Click, Sub(s, e) _editor.Content.TableAuthoringService.MergeSelectedCells()
+
+        AddHandler _alignLeftItem.Click, Sub(s, e) _editor.Formatting.AlignLeft()
+        AddHandler _alignCenterItem.Click, Sub(s, e) _editor.Formatting.AlignCenter()
+        AddHandler _alignRightItem.Click, Sub(s, e) _editor.Formatting.AlignRight()
+        AddHandler _removeAlignmentItem.Click, Sub(s, e) _editor.Formatting.RemoveAlignment()
+
+        AddHandler _cutItem.Click, Sub(s, e) _editor.Editor.Cut()
+        AddHandler _copyItem.Click, Sub(s, e) _editor.Editor.Copy()
+        AddHandler _pasteItem.Click, Sub(s, e) _editor.Editor.Paste()
+        AddHandler _deleteItem.Click, Sub(s, e) _editor.Editor.Delete()
+        AddHandler _selectAllItem.Click, Sub(s, e) _editor.Selection.SelectAll()
     End Sub
 
     Private Shared Function LoadIcon(ByVal fileName As String) As Image

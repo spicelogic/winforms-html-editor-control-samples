@@ -1,4 +1,3 @@
-using SpiceLogic.HtmlEditor.WinForms;
 using SpiceLogic.HtmlEditor.WinForms.Models.BOs.EditorEventArgs;
 
 namespace PasteFromWord;
@@ -7,40 +6,18 @@ namespace PasteFromWord;
 /// Handles the Pasting event to clean up Word/Outlook clipboard HTML before it lands in
 /// the document. When IsPastingFromMsWord is true, class/style attributes and Word's own
 /// "o:" / "w:" namespaced markup are stripped with a small documented regex helper
-/// (see WordHtmlCleaner.cs). A side panel logs a before/after summary for every paste so
-/// the cleanup is visible.
+/// (see WordHtmlCleaner.cs). A log panel below the editor records a before/after summary
+/// for every paste so the cleanup is visible.
+///
+/// The layout lives in the designer; open MainForm.cs in the Visual Studio designer to see it.
 /// </summary>
-public class MainForm : Form
+public partial class MainForm : Form
 {
-    private readonly WinFormHtmlEditor _editor = new() { Dock = DockStyle.Fill };
-    private readonly TextBox _log = new()
-    {
-        Dock = DockStyle.Fill,
-        Multiline = true,
-        ReadOnly = true,
-        ScrollBars = ScrollBars.Vertical,
-        Font = new Font(FontFamily.GenericMonospace, 9)
-    };
-    private readonly SplitContainer _splitContainer = new() { Dock = DockStyle.Fill, Orientation = Orientation.Vertical };
-
     public MainForm()
     {
-        Text = "SpiceLogic WinForms HTML editor - paste from Word";
-        Width = 1200;
-        Height = 700;
+        InitializeComponent();
 
         // No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
-
-        var logPanel = new Panel { Dock = DockStyle.Fill, Padding = new Padding(4) };
-        var logLabel = new Label { Text = "Paste log", Dock = DockStyle.Top, Height = 20 };
-        logPanel.Controls.Add(_log);
-        logPanel.Controls.Add(logLabel);
-
-        _splitContainer.Panel1.Controls.Add(_editor);
-        _splitContainer.Panel2.Controls.Add(logPanel);
-        _splitContainer.SplitterDistance = 750;
-
-        Controls.Add(_splitContainer);
 
         _editor.BodyHtml = "<p>Copy some formatted text from Microsoft Word or Outlook, then paste it here (Ctrl+V) to see the cleanup log.</p>";
 

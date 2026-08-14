@@ -1,29 +1,20 @@
 Imports System.Windows.Forms
 Imports SpiceLogic.HtmlEditor.Abstractions.Entities.MailMerge
-Imports SpiceLogic.HtmlEditor.WinForms
 
 ''' <summary>
 ''' Builds a mail-merge template with end-user-insertable placeholder fields, then merges
 ''' a sample data record into the template on demand for a preview.
 '''
-''' The left editor is the template the end user edits, with the built-in placeholder
+''' The top editor is the template the end user edits, with the built-in placeholder
 ''' toolbar enabled (ShowPlaceholderToolbar) so they can insert fields like "First name"
-''' without typing raw tokens. The right editor is a read-only preview that shows the
+''' without typing raw tokens. The bottom editor is a read-only preview that shows the
 ''' same content with the tokens replaced by sample record values.
+'''
+''' The split layout and the button strip live in the designer; open MainForm.vb in the
+''' Visual Studio designer to see them.
 ''' </summary>
-Public Class MainForm
+Partial Public Class MainForm
     Inherits Form
-
-    Private ReadOnly _templateEditor As New WinFormHtmlEditor() With {.Dock = DockStyle.Fill}
-    Private ReadOnly _previewEditor As New WinFormHtmlEditor() With {.Dock = DockStyle.Fill}
-    Private ReadOnly _splitContainer As New SplitContainer() With {.Dock = DockStyle.Fill, .Orientation = Orientation.Vertical}
-    Private ReadOnly _previewButton As New Button() With {.Text = "Preview merged", .AutoSize = True}
-    Private ReadOnly _buttonPanel As New FlowLayoutPanel() With {
-        .Dock = DockStyle.Top,
-        .Height = 40,
-        .FlowDirection = FlowDirection.LeftToRight,
-        .Padding = New Padding(6)
-    }
 
     ' A single sample record standing in for a row you would normally pull from a
     ' database, CRM, or invoicing system. The keys match each field's Token.
@@ -36,21 +27,9 @@ Public Class MainForm
     }
 
     Public Sub New()
-        Text = "SpiceLogic WinForms HTML editor - mail merge template"
-        Width = 1300
-        Height = 750
+        InitializeComponent()
 
         ' No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
-
-        AddHandler _previewButton.Click, AddressOf OnPreviewMerged
-        _buttonPanel.Controls.Add(_previewButton)
-
-        _splitContainer.Panel1.Controls.Add(_templateEditor)
-        _splitContainer.Panel2.Controls.Add(_previewEditor)
-        _splitContainer.SplitterDistance = 620
-
-        Controls.Add(_splitContainer)
-        Controls.Add(_buttonPanel)
 
         ' Register the fields the end user is allowed to insert into the template.
         _templateEditor.Content.MailMerge.PlaceholderFields = New List(Of PlaceholderField) From {
@@ -74,7 +53,7 @@ Public Class MainForm
         _previewEditor.ChangeReadOnlyMode(True)
     End Sub
 
-    Private Sub OnPreviewMerged(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub OnPreviewMerged(ByVal sender As Object, ByVal e As EventArgs) Handles _previewButton.Click
         Dim merged As String = _templateEditor.BodyHtml
 
         For Each pair In SampleRecord

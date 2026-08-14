@@ -34,7 +34,7 @@ Namespace Global.CustomDialog
             Me.descriptionPanel.Location = New System.Drawing.Point(15, 15)
             Me.descriptionPanel.Name = "descriptionPanel"
             Me.descriptionPanel.Padding = New System.Windows.Forms.Padding(14)
-            Me.descriptionPanel.Size = New System.Drawing.Size(904, 130)
+            Me.descriptionPanel.Size = New System.Drawing.Size(1000, 130)
             Me.descriptionPanel.TabIndex = 0
             '
             ' titleLabel
@@ -56,7 +56,7 @@ Namespace Global.CustomDialog
             Me.descriptionLabel1.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51)
             Me.descriptionLabel1.Location = New System.Drawing.Point(14, 40)
             Me.descriptionLabel1.Name = "descriptionLabel1"
-            Me.descriptionLabel1.Size = New System.Drawing.Size(874, 36)
+            Me.descriptionLabel1.Size = New System.Drawing.Size(970, 36)
             Me.descriptionLabel1.TabIndex = 1
             Me.descriptionLabel1.Text = "The HTML Editor has built-in dialogs for images, hyperlinks, tables, spell checking, symbols, search/replace, YouTube videos, and the style builder. You can fully replace any or all of them with your own custom dialog implementations by implementing the corresponding interface (e.g., IImageDialog, IHyperlinkDialog)."
             '
@@ -66,7 +66,7 @@ Namespace Global.CustomDialog
             Me.descriptionLabel2.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51)
             Me.descriptionLabel2.Location = New System.Drawing.Point(14, 82)
             Me.descriptionLabel2.Name = "descriptionLabel2"
-            Me.descriptionLabel2.Size = New System.Drawing.Size(874, 36)
+            Me.descriptionLabel2.Size = New System.Drawing.Size(970, 36)
             Me.descriptionLabel2.TabIndex = 2
             Me.descriptionLabel2.Text = "Try it: Click the Hyperlink, Image, Table, Spell Checker, or other toolbar buttons to see the custom dialogs in action. Check the Dialogs folder in this project for the full source code of each custom dialog implementation."
             '
@@ -76,7 +76,7 @@ Namespace Global.CustomDialog
             Me.winFormHtmlEditor1.Location = New System.Drawing.Point(15, 145)
             Me.winFormHtmlEditor1.Name = "winFormHtmlEditor1"
             Me.winFormHtmlEditor1.EditorContextMenuStrip = Nothing
-            Me.winFormHtmlEditor1.Size = New System.Drawing.Size(904, 398)
+            Me.winFormHtmlEditor1.Size = New System.Drawing.Size(1000, 580)
             Me.winFormHtmlEditor1.TabIndex = 1
             Me.winFormHtmlEditor1.ToolbarContextMenuStrip = Nothing
             '
@@ -84,7 +84,7 @@ Namespace Global.CustomDialog
             '
             Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0F, 13.0F)
             Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-            Me.ClientSize = New System.Drawing.Size(934, 558)
+            Me.ClientSize = New System.Drawing.Size(1030, 740)
             Me.Padding = New System.Windows.Forms.Padding(15)
             Me.Controls.Add(Me.winFormHtmlEditor1)
             Me.Controls.Add(Me.descriptionPanel)

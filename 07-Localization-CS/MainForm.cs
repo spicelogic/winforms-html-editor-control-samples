@@ -1,6 +1,5 @@
 using SpiceLogic.HtmlEditor.Abstractions.Entities.SpellCheck;
 using SpiceLogic.HtmlEditor.Resources.Localization;
-using SpiceLogic.HtmlEditor.WinForms;
 
 namespace LocalizationSample;
 
@@ -13,41 +12,17 @@ namespace LocalizationSample;
 ///      SpellCheckOptions.SpellCheckLanguage (defaults to SameAsEditorLanguage).
 ///   3. Overriding individual UI strings at runtime with a small JSON file dropped next to the
 ///      application - no recompiling the control required.
+///
+/// The dropdowns, checkbox, and docked editor are laid out in the designer; open MainForm.cs
+/// in the Visual Studio designer to see them.
 /// </summary>
-public class MainForm : Form
+public partial class MainForm : Form
 {
-    private readonly WinFormHtmlEditor _editor = new() { Dock = DockStyle.Fill };
-
-    private readonly FlowLayoutPanel _topPanel = new()
-    {
-        Dock = DockStyle.Top,
-        AutoSize = true,
-        WrapContents = false,
-        Padding = new Padding(10, 10, 10, 5)
-    };
-
-    private readonly ComboBox _languageCombo = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 200, Margin = new Padding(0, 3, 15, 0) };
-    private readonly Label _currentLanguageLabel = new() { AutoSize = true, ForeColor = Color.DarkBlue, Margin = new Padding(0, 6, 15, 0) };
-    private readonly ComboBox _spellCheckCombo = new() { DropDownStyle = ComboBoxStyle.DropDownList, Width = 200, Margin = new Padding(0, 3, 15, 0) };
-    private readonly CheckBox _jsonOverrideCheckBox = new() { AutoSize = true, Text = "Enable JSON override (Polish)", Margin = new Padding(0, 6, 0, 0) };
-
     public MainForm()
     {
-        Text = "SpiceLogic WinForms HTML editor - localization";
-        Width = 1200;
-        Height = 800;
+        InitializeComponent();
 
         // No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
-
-        _topPanel.Controls.Add(new Label { AutoSize = true, Margin = new Padding(0, 6, 5, 0), Text = "Editor language:" });
-        _topPanel.Controls.Add(_languageCombo);
-        _topPanel.Controls.Add(_currentLanguageLabel);
-        _topPanel.Controls.Add(new Label { AutoSize = true, Margin = new Padding(0, 6, 5, 0), Text = "Spell check language:" });
-        _topPanel.Controls.Add(_spellCheckCombo);
-        _topPanel.Controls.Add(_jsonOverrideCheckBox);
-
-        Controls.Add(_editor);
-        Controls.Add(_topPanel);
 
         // 1. Editor language dropdown, populated from the EditorLanguage enum the control ships.
         foreach (EditorLanguage lang in Enum.GetValues(typeof(EditorLanguage)))
@@ -55,9 +30,6 @@ public class MainForm : Form
             _languageCombo.Items.Add(lang);
         }
         _languageCombo.SelectedItem = EditorLanguage.EnglishUs;
-        _currentLanguageLabel.Text = "Current: EnglishUs";
-        _languageCombo.SelectedIndexChanged += OnLanguageChanged;
-        _jsonOverrideCheckBox.CheckedChanged += OnJsonOverrideChanged;
 
         // 2. Spell-check language dropdown. SameAsEditorLanguage (the default) tracks whatever
         //    is picked above automatically; pick a specific language here to override it.
@@ -66,7 +38,6 @@ public class MainForm : Form
             _spellCheckCombo.Items.Add(lang);
         }
         _spellCheckCombo.SelectedItem = SpellCheckLanguage.SameAsEditorLanguage;
-        _spellCheckCombo.SelectedIndexChanged += OnSpellCheckLanguageChanged;
 
         _editor.BodyHtml = "<h2>Localization</h2>"
             + "<p>Change the language dropdown above to see all toolbar tooltips, context menu "

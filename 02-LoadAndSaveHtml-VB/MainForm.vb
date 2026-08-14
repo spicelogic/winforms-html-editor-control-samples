@@ -1,6 +1,5 @@
 Imports System.IO
 Imports System.Windows.Forms
-Imports SpiceLogic.HtmlEditor.WinForms
 
 ''' <summary>
 ''' Demonstrates the difference between the two properties you can persist:
@@ -14,45 +13,23 @@ Imports SpiceLogic.HtmlEditor.WinForms
 '''                  and any style/meta content. Use this when you want a
 '''                  file that can be opened standalone in a browser.
 '''
-''' A radio button lets you pick which property Open/Save uses, so you can see
-''' the difference in the saved .html file.
+''' The layout (menu, radio buttons, docked editor) lives in the designer; open
+''' MainForm.vb in the Visual Studio designer to see it. A radio button lets you pick
+''' which property Open/Save uses, so you can see the difference in the saved .html file.
 ''' </summary>
-Public Class MainForm
+Partial Public Class MainForm
     Inherits Form
 
-    Private ReadOnly _editor As New WinFormHtmlEditor() With {.Dock = DockStyle.Fill}
-    Private ReadOnly _bodyHtmlOption As New RadioButton() With {.Text = "Use BodyHtml (inner content only)", .Checked = True, .AutoSize = True}
-    Private ReadOnly _documentHtmlOption As New RadioButton() With {.Text = "Use DocumentHtml (full document)", .AutoSize = True}
-    Private ReadOnly _optionsPanel As New FlowLayoutPanel() With {.Dock = DockStyle.Top, .Height = 32, .FlowDirection = FlowDirection.LeftToRight}
-
     Public Sub New()
-        Text = "SpiceLogic WinForms HTML editor - load and save HTML"
-        Width = 1000
-        Height = 700
+        InitializeComponent()
 
         ' No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
-
-        Dim menuStrip = New MenuStrip()
-        Dim fileMenu = New ToolStripMenuItem("File")
-        Dim openItem = New ToolStripMenuItem("Open...", Nothing, AddressOf OnOpenClick)
-        Dim saveItem = New ToolStripMenuItem("Save as...", Nothing, AddressOf OnSaveClick)
-        fileMenu.DropDownItems.Add(openItem)
-        fileMenu.DropDownItems.Add(saveItem)
-        menuStrip.Items.Add(fileMenu)
-        MainMenuStrip = menuStrip
-
-        _optionsPanel.Controls.Add(_bodyHtmlOption)
-        _optionsPanel.Controls.Add(_documentHtmlOption)
-
-        Controls.Add(_editor)
-        Controls.Add(_optionsPanel)
-        Controls.Add(menuStrip)
 
         _editor.DocumentTitle = "Sample document"
         _editor.BodyHtml = "<p>Open or save this content as HTML using the File menu above.</p>"
     End Sub
 
-    Private Sub OnOpenClick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub OnOpenClick(ByVal sender As Object, ByVal e As EventArgs) Handles _openItem.Click
         Using dialog As New OpenFileDialog() With {
             .Filter = "HTML files (*.html;*.htm)|*.html;*.htm|All files (*.*)|*.*",
             .Title = "Open HTML file"
@@ -71,7 +48,7 @@ Public Class MainForm
         End Using
     End Sub
 
-    Private Sub OnSaveClick(ByVal sender As Object, ByVal e As EventArgs)
+    Private Sub OnSaveClick(ByVal sender As Object, ByVal e As EventArgs) Handles _saveItem.Click
         Using dialog As New SaveFileDialog() With {
             .Filter = "HTML files (*.html)|*.html|All files (*.*)|*.*",
             .Title = "Save HTML file",

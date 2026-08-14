@@ -1,7 +1,6 @@
 Imports System.Drawing
 Imports System.IO
 Imports System.Windows.Forms
-Imports SpiceLogic.HtmlEditor.WinForms
 Imports SpiceLogic.HtmlEditor.WinForms.ToolbarModule
 
 ''' <summary>
@@ -16,42 +15,23 @@ Imports SpiceLogic.HtmlEditor.WinForms.ToolbarModule
 '''   the editor's own direct Btn* shortcut properties that point at those same
 '''   buttons), swapping a button icon, replacing a button's click behavior, changing a
 '''   tooltip, and appending custom buttons that act on the document.
+'''
+''' The tabs, the two editors, and the custom ToolStrip are laid out in the designer;
+''' open MainForm.vb in the Visual Studio designer to see them.
 ''' </summary>
-Public Class MainForm
+Partial Public Class MainForm
     Inherits Form
-
-    Private ReadOnly _tabs As New TabControl() With {.Dock = DockStyle.Fill}
-
-    Private ReadOnly _customToolbarEditor As New WinFormHtmlEditor() With {.Dock = DockStyle.Fill}
-    Private ReadOnly _customStrip As New ToolStrip() With {.Dock = DockStyle.Top}
-
-    Private ReadOnly _overrideEditor As New WinFormHtmlEditor() With {.Dock = DockStyle.Fill}
 
     Private Const SignatureHtml As String =
         "<p>Best regards,<br/>The Sales Team<br/><em>Sent with SpiceLogic HTML editor</em></p>"
 
     Public Sub New()
-        Text = "SpiceLogic WinForms HTML editor - toolbar customization (VB.NET)"
-        Width = 1100
-        Height = 750
+        InitializeComponent()
 
         ' No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
-
-        Dim buildTab As New TabPage("Build a custom toolbar")
-        buildTab.Controls.Add(_customToolbarEditor)
-        buildTab.Controls.Add(_customStrip)
-
-        Dim overrideTab As New TabPage("Customize the built-in toolbars")
-        overrideTab.Controls.Add(_overrideEditor)
-
-        _tabs.TabPages.Add(buildTab)
-        _tabs.TabPages.Add(overrideTab)
-        Controls.Add(_tabs)
-
-        AddHandler Load, AddressOf OnFormLoad
     End Sub
 
-    Private Sub OnFormLoad(sender As Object, e As EventArgs)
+    Private Sub OnFormLoad(sender As Object, e As EventArgs) Handles MyBase.Load
         SetUpCustomToolbarTab()
         SetUpOverrideTab()
     End Sub

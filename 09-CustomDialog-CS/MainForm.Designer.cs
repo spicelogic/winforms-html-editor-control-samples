@@ -38,7 +38,7 @@ namespace CustomDialog
             this.descriptionPanel.Location = new System.Drawing.Point(15, 15);
             this.descriptionPanel.Name = "descriptionPanel";
             this.descriptionPanel.Padding = new System.Windows.Forms.Padding(14);
-            this.descriptionPanel.Size = new System.Drawing.Size(904, 130);
+            this.descriptionPanel.Size = new System.Drawing.Size(1000, 130);
             this.descriptionPanel.TabIndex = 0;
             //
             // titleLabel
@@ -60,7 +60,7 @@ namespace CustomDialog
             this.descriptionLabel1.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
             this.descriptionLabel1.Location = new System.Drawing.Point(14, 40);
             this.descriptionLabel1.Name = "descriptionLabel1";
-            this.descriptionLabel1.Size = new System.Drawing.Size(874, 36);
+            this.descriptionLabel1.Size = new System.Drawing.Size(970, 36);
             this.descriptionLabel1.TabIndex = 1;
             this.descriptionLabel1.Text = "The HTML Editor has built-in dialogs for images, hyperlinks, tables, spell checking, symbols, search/replace, YouTube videos, and the style builder. You can fully replace any or all of them with your own custom dialog implementations by implementing the corresponding interface (e.g., IImageDialog, IHyperlinkDialog).";
             //
@@ -70,7 +70,7 @@ namespace CustomDialog
             this.descriptionLabel2.ForeColor = System.Drawing.Color.FromArgb(51, 51, 51);
             this.descriptionLabel2.Location = new System.Drawing.Point(14, 82);
             this.descriptionLabel2.Name = "descriptionLabel2";
-            this.descriptionLabel2.Size = new System.Drawing.Size(874, 36);
+            this.descriptionLabel2.Size = new System.Drawing.Size(970, 36);
             this.descriptionLabel2.TabIndex = 2;
             this.descriptionLabel2.Text = "Try it: Click the Hyperlink, Image, Table, Spell Checker, or other toolbar buttons to see the custom dialogs in action. Check the Dialogs folder in this project for the full source code of each custom dialog implementation.";
             //
@@ -80,7 +80,7 @@ namespace CustomDialog
             this.winFormHtmlEditor1.Location = new System.Drawing.Point(15, 145);
             this.winFormHtmlEditor1.Name = "winFormHtmlEditor1";
             this.winFormHtmlEditor1.EditorContextMenuStrip = null;
-            this.winFormHtmlEditor1.Size = new System.Drawing.Size(904, 398);
+            this.winFormHtmlEditor1.Size = new System.Drawing.Size(1000, 580);
             this.winFormHtmlEditor1.TabIndex = 1;
             this.winFormHtmlEditor1.ToolbarContextMenuStrip = null;
             //
@@ -88,7 +88,7 @@ namespace CustomDialog
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 558);
+            this.ClientSize = new System.Drawing.Size(1030, 740);
             this.Padding = new System.Windows.Forms.Padding(15);
             this.Controls.Add(this.winFormHtmlEditor1);
             this.Controls.Add(this.descriptionPanel);

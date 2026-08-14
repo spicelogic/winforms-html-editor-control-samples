@@ -1,5 +1,4 @@
 using System.IO;
-using SpiceLogic.HtmlEditor.WinForms;
 using SpiceLogic.HtmlEditor.WinForms.ToolbarModule;
 
 namespace ToolbarCustomization;
@@ -16,39 +15,20 @@ namespace ToolbarCustomization;
 ///   the editor's own direct Btn* shortcut properties that point at those same
 ///   buttons), swapping a button icon, replacing a button's click behavior, changing a
 ///   tooltip, and appending custom buttons that act on the document.
+///
+/// The tabs, the two editors, and the custom ToolStrip are laid out in the designer;
+/// open MainForm.cs in the Visual Studio designer to see them.
 /// </summary>
-public class MainForm : Form
+public partial class MainForm : Form
 {
-    private readonly TabControl _tabs = new() { Dock = DockStyle.Fill };
-
-    private readonly WinFormHtmlEditor _customToolbarEditor = new() { Dock = DockStyle.Fill };
-    private readonly ToolStrip _customStrip = new() { Dock = DockStyle.Top };
-
-    private readonly WinFormHtmlEditor _overrideEditor = new() { Dock = DockStyle.Fill };
-
     private const string SignatureHtml =
         "<p>Best regards,<br/>The Sales Team<br/><em>Sent with SpiceLogic HTML editor</em></p>";
 
     public MainForm()
     {
-        Text = "SpiceLogic WinForms HTML editor - toolbar customization";
-        Width = 1100;
-        Height = 750;
+        InitializeComponent();
 
         // No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
-
-        var buildTab = new TabPage("Build a custom toolbar");
-        buildTab.Controls.Add(_customToolbarEditor);
-        buildTab.Controls.Add(_customStrip);
-
-        var overrideTab = new TabPage("Customize the built-in toolbars");
-        overrideTab.Controls.Add(_overrideEditor);
-
-        _tabs.TabPages.Add(buildTab);
-        _tabs.TabPages.Add(overrideTab);
-        Controls.Add(_tabs);
-
-        Load += OnLoad;
     }
 
     private void OnLoad(object? sender, EventArgs e)
