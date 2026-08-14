@@ -18,3 +18,14 @@ A VB.NET version of this sample sits alongside in `08-CustomSpellChecker-VB`.
 ```
 dotnet run --project 08-CustomSpellChecker-CS
 ```
+
+## Building this with an AI assistant?
+
+> [!TIP]
+> Point your assistant at our MCP server and it can read the real API for this
+> control instead of guessing at member names:
+> `https://mcp.spicelogic.com/html-editor/winforms`
+>
+> ```bash
+> claude mcp add --transport http spicelogic-winforms https://mcp.spicelogic.com/html-editor/winforms
+> ```

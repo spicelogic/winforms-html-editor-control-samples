@@ -19,3 +19,14 @@ dotnet run --project 04-ToolbarCustomization-CS
 ```
 
 A VB.NET version of this sample sits alongside in `04-ToolbarCustomization-VB`.
+
+## Building this with an AI assistant?
+
+> [!TIP]
+> Point your assistant at our MCP server and it can read the real API for this
+> control instead of guessing at member names:
+> `https://mcp.spicelogic.com/html-editor/winforms`
+>
+> ```bash
+> claude mcp add --transport http spicelogic-winforms https://mcp.spicelogic.com/html-editor/winforms
+> ```

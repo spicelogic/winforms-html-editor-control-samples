@@ -15,3 +15,14 @@ dotnet run --project 11-FullEditorDemo-VB
 ```
 
 This is the VB.NET counterpart to the C# `11-FullEditorDemo-CS` sample alongside it.
+
+## Building this with an AI assistant?
+
+> [!TIP]
+> Point your assistant at our MCP server and it can read the real API for this
+> control instead of guessing at member names:
+> `https://mcp.spicelogic.com/html-editor/winforms`
+>
+> ```bash
+> claude mcp add --transport http spicelogic-winforms https://mcp.spicelogic.com/html-editor/winforms
+> ```
