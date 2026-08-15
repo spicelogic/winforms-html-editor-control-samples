@@ -17,11 +17,6 @@ updates, handle the editor's `HtmlChanged` event instead.
 
 A VB.NET version of this sample sits alongside it in `06-DataBinding-VB`.
 
-## Run it
-
-```
-dotnet run --project 06-DataBinding-CS
-```
 
 ## Building this with an AI assistant?
 

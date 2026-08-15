@@ -94,14 +94,13 @@ PM> Install-Package SpiceLogic.HtmlEditor.WinForms
 The sample projects reference the package as `Version="*"`, so a restore always pulls the latest
 published release and you are never evaluating an old build.
 
-## Run the samples
+## Get the samples
 
 ```bash
 git clone https://github.com/spicelogic/winforms-html-editor-control-samples.git
-cd winforms-html-editor-control-samples
-dotnet build WinFormsHtmlEditorSamples.sln
-dotnet run --project 01-Quickstart-CS
 ```
+
+Open `WinFormsHtmlEditorSamples.sln` and start with **01-Quickstart-CS**.
 
 Prerequisites: Windows. The control supports .NET Framework 4.5, 4.7.2, and 4.8, plus .NET 5
 through .NET 10, all on Windows, so it runs on whatever target framework your own app already

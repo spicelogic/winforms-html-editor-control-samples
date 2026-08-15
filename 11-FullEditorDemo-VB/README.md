@@ -8,11 +8,6 @@ style block.
 Key API members used: `WinFormHtmlEditor`, `BodyHtml`, `RefreshHighDpiScaling`, `Options`,
 `SpellCheckOptions`, `HeaderStyleContentElementID` / `HeaderStyleContent`.
 
-## Run it
-
-```
-dotnet run --project 11-FullEditorDemo-VB
-```
 
 This is the VB.NET counterpart to the C# `11-FullEditorDemo-CS` sample alongside it.
 

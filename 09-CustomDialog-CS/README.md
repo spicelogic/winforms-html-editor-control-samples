@@ -17,11 +17,6 @@ Key API members used: `Dialog.ImageDialog`, `Dialog.HyperlinkDialog`,
 
 A VB.NET version of this sample sits alongside in `09-CustomDialog-VB`.
 
-## Run it
-
-```
-dotnet run --project 09-CustomDialog-CS
-```
 
 ## Building this with an AI assistant?
 

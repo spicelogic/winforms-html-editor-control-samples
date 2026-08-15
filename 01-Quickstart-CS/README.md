@@ -8,11 +8,6 @@ Key API members used: `WinFormHtmlEditor`, `BodyHtml`, `HtmlChanged`.
 
 A VB.NET version of this same walkthrough sits alongside in `01-Quickstart-VB`.
 
-## Run it
-
-```
-dotnet run --project 01-Quickstart-CS
-```
 
 ## Building this with an AI assistant?
 

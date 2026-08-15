@@ -13,11 +13,6 @@ Key API members used: `SpellCheckOptions`, `ISpellCheckerEngine`, `SpellChecker`
 
 A VB.NET version of this sample sits alongside in `08-CustomSpellChecker-VB`.
 
-## Run it
-
-```
-dotnet run --project 08-CustomSpellChecker-CS
-```
 
 ## Building this with an AI assistant?
 

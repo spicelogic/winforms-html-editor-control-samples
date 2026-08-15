@@ -15,11 +15,6 @@ folder for the full how-to and the catalog of every overridable key.
 
 A VB.NET version of this same sample sits alongside in `07-Localization-VB`.
 
-## Run it
-
-```
-dotnet run --project 07-Localization-CS
-```
 
 ## Building this with an AI assistant?
 

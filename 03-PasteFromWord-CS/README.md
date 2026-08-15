@@ -10,11 +10,6 @@ count for every paste so the cleanup is visible.
 Key API members used: `Pasting`, `PastingHtmlEventArgs` (`PastingHtml`, `IsModified`,
 `IsPastingFromMsWord`).
 
-## Run it
-
-```
-dotnet run --project 03-PasteFromWord-CS
-```
 
 Then copy some formatted text from Word or Outlook and paste it into the editor (Ctrl+V)
 to see the cleanup log update.

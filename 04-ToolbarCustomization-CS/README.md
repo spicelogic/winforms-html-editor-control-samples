@@ -12,11 +12,6 @@ Key API members used: `Toolbar1`, `Toolbar2`, `ToolbarItemOverrider`,
 `ToolbarItemOverrider.ToolbarItems`, `ToolbarItemOverrider.SaveButtonClicked`,
 `BtnSymbol`, `BtnInsertYouTubeVideo`, `BodyHtml`.
 
-## Run it
-
-```
-dotnet run --project 04-ToolbarCustomization-CS
-```
 
 A VB.NET version of this sample sits alongside in `04-ToolbarCustomization-VB`.
 

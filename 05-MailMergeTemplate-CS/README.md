@@ -12,11 +12,6 @@ Key API members used: `Content.MailMerge.PlaceholderFields`, `PlaceholderField`,
 
 A VB.NET version of this sample sits alongside in `05-MailMergeTemplate-VB`.
 
-## Run it
-
-```
-dotnet run --project 05-MailMergeTemplate-CS
-```
 
 ## Building this with an AI assistant?
 

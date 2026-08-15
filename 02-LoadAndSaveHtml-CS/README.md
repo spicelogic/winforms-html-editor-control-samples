@@ -9,11 +9,6 @@ the difference in the saved file.
 Key API members used: `BodyHtml`, `DocumentHtml`, `DocumentTitle`, together with plain
 `OpenFileDialog` / `SaveFileDialog` and `File.ReadAllText` / `File.WriteAllText`.
 
-## Run it
-
-```
-dotnet run --project 02-LoadAndSaveHtml-CS
-```
 
 A VB.NET version of this sample sits alongside in `02-LoadAndSaveHtml-VB`.
 
