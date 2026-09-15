@@ -115,6 +115,13 @@ The samples include the small `#if NET6_0_OR_GREATER` block each `Program.cs` ne
 build cleanly on .NET Framework, where the source-generated
 `ApplicationConfiguration.Initialize()` is not available.
 
+One more .NET Framework detail, already handled in every sample project here: Visual Studio
+works out which files are forms on its own for the modern .NET targets, but not for a .NET
+Framework target in an SDK-style project. Without a declared `<SubType>Form</SubType>` on the
+form's `Compile` item, the file shows a plain code icon and double-click opens the code instead
+of the designer. Each project file carries that block, so copy it into your own SDK-style .NET
+Framework project if you see the same thing there.
+
 </details>
 
 ## Samples

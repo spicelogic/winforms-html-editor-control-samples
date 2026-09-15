@@ -26,4 +26,14 @@
     </Content>
   </ItemGroup>
 
+  <!-- Visual Studio works out which files are forms on its own for the modern .NET targets,
+       but not for a .NET Framework target: there the SubType has to be declared, or the file
+       shows a plain code icon and double-click opens the code instead of the designer.
+       Copy this block into your own SDK-style .NET Framework project. -->
+  <ItemGroup>
+    <Compile Update="MainForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+  </ItemGroup>
+
 </Project>
