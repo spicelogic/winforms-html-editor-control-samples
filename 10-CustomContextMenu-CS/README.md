@@ -12,6 +12,22 @@ Key API members used: `EditorContextMenuStrip`, `ContextMenuShowing`, `ToolbarIt
 A VB.NET version of this same sample sits alongside in `10-CustomContextMenu-VB`.
 
 
+## Keep the default menu
+
+Use `ContextMenuItems` to change only selected built-in commands. Configure these properties after InitializeComponent.
+
+```csharp
+editor.ContextMenuItems.ViewSource.Visible = false;
+editor.ContextMenuItems.Paste.Enabled = false;
+```
+
+```vb
+editor.ContextMenuItems.ViewSource.Visible = False
+editor.ContextMenuItems.Paste.Enabled = False
+```
+
+Use `Text` and `Image` for persistent caption and icon overrides. Use each reference's `Item` and `DefaultContextMenu.Items` to reorder existing items or add native commands. Built-in command handlers remain attached. Setting `Visible` or `Enabled` back to true restores selection-based behavior; it does not force unavailable commands enabled. `ContextMenuShowing` runs before display.
+
 ## Building this with an AI assistant?
 
 > [!TIP]
