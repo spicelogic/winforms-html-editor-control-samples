@@ -29,9 +29,6 @@
          not copied to output (not loaded at runtime, only read by the developer). -->
     <None Include="SpiceLogic.HtmlEditor.Localization\_OVERRIDABLE-KEYS.reference.json" />
     <None Include="SpiceLogic.HtmlEditor.Localization\README.md" />
-    <Content Include="underline.gif">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
 
   <!-- Visual Studio works out which files are forms on its own for the modern .NET targets,

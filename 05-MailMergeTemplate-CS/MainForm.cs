@@ -1,3 +1,5 @@
+using System.Net;
+using System.Text.RegularExpressions;
 using SpiceLogic.HtmlEditor.Abstractions.Entities.MailMerge;
 
 namespace MailMergeTemplate;
@@ -26,6 +28,13 @@ public partial class MainForm : Form
         ["{{InvoiceNumber}}"] = "INV-10452",
         ["{{DueDate}}"] = "2026-09-01"
     };
+
+    // An inserted field is a protected span, <span class="sl-placeholder" ...>{{FirstName}}</span>.
+    // Replace the whole span rather than only its token, so the merged text does not keep the
+    // field's blue editing style. Tokens typed as plain text are replaced afterwards.
+    private static readonly Regex PlaceholderSpan = new(
+        @"<span\b[^>]*\bclass\s*=\s*[""']?sl-placeholder[""']?[^>]*>(.*?)</span>",
+        RegexOptions.IgnoreCase | RegexOptions.Singleline);
 
     public MainForm()
     {
@@ -58,14 +67,17 @@ public partial class MainForm : Form
 
     private void OnPreviewMerged(object? sender, EventArgs e)
     {
-        string merged = _templateEditor.BodyHtml;
+        string merged = PlaceholderSpan.Replace(_templateEditor.BodyHtml, match =>
+            SampleRecord.TryGetValue(WebUtility.HtmlDecode(match.Groups[1].Value), out string? value)
+                ? WebUtility.HtmlEncode(value)
+                : match.Groups[1].Value);
 
         foreach (var pair in SampleRecord)
         {
             // The two-argument String.Replace overload is already an ordinal comparison, and
             // it is the one available on every target framework this sample builds against
             // (the StringComparison overload is .NET Core 2.1+ only, not .NET Framework).
-            merged = merged.Replace(pair.Key, pair.Value);
+            merged = merged.Replace(pair.Key, WebUtility.HtmlEncode(pair.Value));
         }
 
         _previewEditor.ChangeReadOnlyMode(false);

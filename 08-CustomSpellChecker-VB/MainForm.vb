@@ -22,6 +22,8 @@ Partial Public Class MainForm
 
         ' No license key set, so the editor runs in trial mode. See the licensing docs linked in the README.
 
+        ' Optional: misspelled words already get the built-in wavy underline. Set the full path of an
+        ' image only to draw your own underline instead.
         _editor.SpellCheckOptions.CurlyUnderlineImageFilePath = Path.Combine(Application.StartupPath, "underline.gif")
         _editor.SpellCheckOptions.FireInlineSpellCheckingOnKeyStroke = True
 

@@ -53,9 +53,9 @@ Partial Public Class MainForm
             & "switch to a <code>[CUSTOM]</code> prefix, proving the JSON file overrides the " _
             & "embedded RESX strings.</p>"
 
-        ' 3. Inline spell-check: SpellCheckLanguage defaults to SameAsEditorLanguage, so picking
-        '    Polish in the language dropdown also switches the dictionary to pl_PL.
-        _editor.SpellCheckOptions.CurlyUnderlineImageFilePath = Path.Combine(Application.StartupPath, "underline.gif")
+        ' 3. Inline spell-check, with the built-in wavy underline. SpellCheckLanguage defaults to
+        '    SameAsEditorLanguage, so picking Polish in the language dropdown also switches the
+        '    dictionary to pl_PL.
         _editor.SpellCheckOptions.FireInlineSpellCheckingOnKeyStroke = True
     End Sub
 

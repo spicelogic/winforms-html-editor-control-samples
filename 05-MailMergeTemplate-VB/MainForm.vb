@@ -1,3 +1,5 @@
+Imports System.Net
+Imports System.Text.RegularExpressions
 Imports System.Windows.Forms
 Imports SpiceLogic.HtmlEditor.Abstractions.Entities.MailMerge
 
@@ -25,6 +27,13 @@ Partial Public Class MainForm
         {"{{InvoiceNumber}}", "INV-10452"},
         {"{{DueDate}}", "2026-09-01"}
     }
+
+    ' An inserted field is a protected span, <span class="sl-placeholder" ...>{{FirstName}}</span>.
+    ' Replace the whole span rather than only its token, so the merged text does not keep the
+    ' field's blue editing style. Tokens typed as plain text are replaced afterwards.
+    Private Shared ReadOnly PlaceholderSpan As New Regex(
+        "<span\b[^>]*\bclass\s*=\s*[""']?sl-placeholder[""']?[^>]*>(.*?)</span>",
+        RegexOptions.IgnoreCase Or RegexOptions.Singleline)
 
     Public Sub New()
         InitializeComponent()
@@ -54,13 +63,18 @@ Partial Public Class MainForm
     End Sub
 
     Private Sub OnPreviewMerged(ByVal sender As Object, ByVal e As EventArgs) Handles _previewButton.Click
-        Dim merged As String = _templateEditor.BodyHtml
+        Dim merged As String = PlaceholderSpan.Replace(_templateEditor.BodyHtml,
+            Function(match As Match)
+                Dim value As String = Nothing
+                Return If(SampleRecord.TryGetValue(WebUtility.HtmlDecode(match.Groups(1).Value), value),
+                          WebUtility.HtmlEncode(value), match.Groups(1).Value)
+            End Function)
 
         For Each pair In SampleRecord
             ' String.Replace(String, String) is already an ordinal comparison, and it is the
             ' overload available on every target framework this sample builds against (the
             ' StringComparison overload is .NET Core 2.1+ only, not .NET Framework).
-            merged = merged.Replace(pair.Key, pair.Value)
+            merged = merged.Replace(pair.Key, WebUtility.HtmlEncode(pair.Value))
         Next
 
         _previewEditor.ChangeReadOnlyMode(False)

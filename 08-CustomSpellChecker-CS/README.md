@@ -9,7 +9,9 @@ OpenOffice-based engine and the demo engine, which flags every word starting wit
 letter "a" as misspelled so the difference is obvious.
 
 Key API members used: `SpellCheckOptions`, `ISpellCheckerEngine`, `SpellChecker`,
-`CustomSpellCheckerEngine`, `CurlyUnderlineImageFilePath`, `FireInlineSpellCheckingOnKeyStroke`.
+`CustomSpellCheckerEngine`, `FireInlineSpellCheckingOnKeyStroke`, and the optional
+`CurlyUnderlineImageFilePath`, which replaces the built-in wavy underline with your own image
+(a full path).
 
 A VB.NET version of this sample sits alongside in `08-CustomSpellChecker-VB`.
 
