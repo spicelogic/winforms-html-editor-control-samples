@@ -107,7 +107,7 @@ Partial Class MainForm
         Me._jsonOverrideCheckBox.Name = "_jsonOverrideCheckBox"
         Me._jsonOverrideCheckBox.Size = New System.Drawing.Size(168, 17)
         Me._jsonOverrideCheckBox.TabIndex = 5
-        Me._jsonOverrideCheckBox.Text = "Enable JSON override (Polish)"
+        Me._jsonOverrideCheckBox.Text = "Enable JSON overrides"
         Me._jsonOverrideCheckBox.UseVisualStyleBackColor = True
         '
         ' MainForm

@@ -115,7 +115,7 @@ namespace LocalizationSample
             this._jsonOverrideCheckBox.Name = "_jsonOverrideCheckBox";
             this._jsonOverrideCheckBox.Size = new System.Drawing.Size(168, 17);
             this._jsonOverrideCheckBox.TabIndex = 5;
-            this._jsonOverrideCheckBox.Text = "Enable JSON override (Polish)";
+            this._jsonOverrideCheckBox.Text = "Enable JSON overrides";
             this._jsonOverrideCheckBox.UseVisualStyleBackColor = true;
             this._jsonOverrideCheckBox.CheckedChanged += new System.EventHandler(this.OnJsonOverrideChanged);
             //

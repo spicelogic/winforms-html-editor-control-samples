@@ -51,8 +51,11 @@ public partial class MainForm : Form
             + "<hr/>"
             + "<p><b>JSON override demo:</b> select <i>Polish</i> from the language dropdown, then "
             + "check <i>Enable JSON override</i>. Toolbar tooltips like Bold, Italic, and Underline "
-            + "switch to a <code>[CUSTOM]</code> prefix, proving the JSON file overrides the "
-            + "embedded RESX strings.</p>";
+            + "switch to a <code>[Custom]</code> prefix, proving the JSON file overrides the "
+            + "embedded RESX strings.</p>"
+            + "<p><b>Custom language demo:</b> select <i>Custom</i> with JSON overrides enabled. "
+            + "The supplied EditorStrings.custom.json demonstrates two Turkish strings. "
+            + "Other strings fall back to English. Supply a complete translation for a complete interface.</p>";
 
         // 3. Inline spell-check, with the built-in wavy underline. SpellCheckLanguage defaults to
         //    SameAsEditorLanguage, so picking Polish in the language dropdown also switches the
